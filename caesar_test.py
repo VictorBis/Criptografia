@@ -40,7 +40,7 @@ def test_remove_spaces():
 def test_caesar_different_alphabet():
     mess = "UN MENSAJE SIN ELLA"
     c2.alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXY "
-    assert c2.cipher(mess) == "BUGTLUHQLGPUGLSSH"
+    assert c2.cipher(mess) == "BUGTLU HQLG PUGLSSH"
 
 
 
