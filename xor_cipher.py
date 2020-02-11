@@ -5,8 +5,8 @@ def cipher(message):
     Parámetro:
        message -- el mensaje a cifrar.
     """
-    pass
-
+    return ''.join([chr(ord(letter)^1) for letter in message])
+    
 def decipher(criptotext):
     """
     Descifra el mensaje recuperando el texto plano siempre y cuando haya
@@ -14,4 +14,4 @@ def decipher(criptotext):
     Parámetro:
        cryptotext -- el mensaje a descifrar.
     """
-    pass
+    return ''.join([chr(ord(letter)^1) for letter in criptotext])
