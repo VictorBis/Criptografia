@@ -35,9 +35,7 @@ class Caesar():
                 cipher_message += self.alphabet[(pos+self.key)%len(self.alphabet)]
             else:
                 cipher_message += letter
-        if flag is None:
-            cipher_message = cipher_message.replace(" ","")
-        return cipher_message
+        return cipher_message.replace(" ","") if flag is None else cipher_message
 
     def decipher(self, criptotext, flag=None):
         """
@@ -46,13 +44,11 @@ class Caesar():
         Parámetro:
             cryptotext -- el mensaje a descifrar.
         """
-        decipher_message = ''
+        message = ''
         for letter in criptotext:
             if letter in self.alphabet:
                 pos = self.alphabet.find(letter)
-                decipher_message += self.alphabet[pos-self.key]
+                message += self.alphabet[pos-self.key]
             else:
-                decipher_message += letter
-        if flag is None:
-            decipher_message = decipher_message.replace(" ","")
-        return decipher_message
+                message += letter
+        return message.replace(" ","") if flag is None else message
