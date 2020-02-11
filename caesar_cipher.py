@@ -1,4 +1,6 @@
 import random
+import pytest
+from utils import CryptographyException
 
 class Caesar():
 
@@ -13,10 +15,10 @@ class Caesar():
         """
         self.alphabet = alphabet
         if key is None:
-            key = random.randint(0,len(alphabet)-1)
+            key = random.randint(0,len(alphabet))
         else:
-            if key < 0 or key > len(alphabet):
-                raise ValueError('Ingresa una clve válida')
+            if key != key % (len(alphabet)+1):
+                raise CryptographyException
         self.key = key
 
     def cipher(self, message, flag=None):
