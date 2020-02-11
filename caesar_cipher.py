@@ -15,7 +15,7 @@ class Caesar():
         if key is None:
             key = random.randint(0,len(alphabet)-1)
         else:
-            if key != (key % len(alphabet)):
+            if key < 0 or key > len(alphabet):
                 raise ValueError('Ingresa una clve válida')
         self.key = key
 
@@ -26,7 +26,16 @@ class Caesar():
         Parámetro:
             message -- el mensaje a cifrar.
         """
-        pass
+        cipher_message = ''
+        for letter in message:
+            if letter in self.alphabet:
+                pos = self.alphabet.find(letter)
+                cipher_message += self.alphabet[(pos+self.key)%len(self.alphabet)]
+            else:
+                cipher_message += letter
+        if flag is None:
+            cipher_message = cipher_message.replace(" ","")
+        return cipher_message
 
     def decipher(self, criptotext, flag=None):
         """
@@ -35,4 +44,13 @@ class Caesar():
         Parámetro:
             cryptotext -- el mensaje a descifrar.
         """
-        pass
+        decipher_message = ''
+        for letter in criptotext:
+            if letter in self.alphabet:
+                pos = self.alphabet.find(letter)
+                decipher_message += self.alphabet[pos-self.key]
+            else:
+                decipher_message += letter
+        if flag is None:
+            decipher_message = decipher_message.replace(" ","")
+        return decipher_message
