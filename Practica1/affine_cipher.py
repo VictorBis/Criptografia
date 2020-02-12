@@ -2,6 +2,7 @@ import random
 import pytest
 from utils import CryptographyException
 from utils import prime_relative
+from utils import mod_inverse
 
 class Affine():
 
@@ -43,4 +44,12 @@ class Affine():
         Parámetro:
             criptotext -- el mensaje a descifrar.
         """
-        pass
+        message = ''
+        for letter in criptotext:
+            if letter in self.alphabet:
+                pos = self.alphabet.find(letter)
+                inverse = mod_inverse(self.A,len(self.alphabet))
+                message += self.alphabet[((inverse*(pos-self.B))%len(self.alphabet))]
+            else:
+                message += letter
+        return message
