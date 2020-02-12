@@ -14,9 +14,9 @@ class Affine():
             A -- El coeficiente A que necesita el cifrado.
             B -- El coeficiente B de desplazamiento.
         """
-        if not prime_relative(A,len(alphabet)):
-             raise CryptographyException
         self.alphabet = alphabet
+        if A is not None and not prime_relative(A,len(alphabet)):
+             raise CryptographyException
         self.A = A if A is not None else 1
         self.B = B if B is not None else random.randint(0,len(alphabet)-1)
 
@@ -31,10 +31,10 @@ class Affine():
         for letter in message:
             if letter in self.alphabet:
                 pos = self.alphabet.find(letter)
-                cipher_message += self.alphabet[(pos+self.key)%len(self.alphabet)]
+                cipher_message += self.alphabet[((pos*self.A)+self.B)%len(self.alphabet)]
             else:
                 cipher_message += letter
-        return cipher_message.replace(" ","") if flag is None else cipher_message
+        return cipher_message
 
     def decipher(self, criptotext):
         """
