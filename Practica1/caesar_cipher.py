@@ -15,7 +15,7 @@ class Caesar():
         """
         self.alphabet = alphabet
         if key is None:
-            key = random.randint(0,len(alphabet))
+            key = random.randint(0,len(alphabet)-1)
         else:
             if key != key % (len(alphabet)+1):
                 raise CryptographyException

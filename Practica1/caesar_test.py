@@ -1,7 +1,7 @@
 from caesar_cipher import Caesar
 
 alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-c1, c2, c3 = Caesar(alphabet, 1), Caesar(alphabet, 7), Caesar(alphabet, 27)
+c1, c2, c3 = Caesar(alphabet, 1), Caesar(alphabet, 7), Caesar(alphabet,27)
 
 def aux_tests(caesar, message, ciphered):
     one = caesar.cipher(message) == ciphered

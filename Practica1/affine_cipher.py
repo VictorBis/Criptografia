@@ -1,3 +1,8 @@
+import random
+import pytest
+from utils import CryptographyException
+from utils import prime_relative
+
 class Affine():
 
     def __init__(self, alphabet, A=None, B=None):
@@ -9,7 +14,11 @@ class Affine():
             A -- El coeficiente A que necesita el cifrado.
             B -- El coeficiente B de desplazamiento.
         """
-        pass
+        if not prime_relative(A,len(alphabet)):
+             raise CryptographyException
+        self.alphabet = alphabet
+        self.A = A if A is not None else 1
+        self.B = B if B is not None else random.randint(0,len(alphabet)-1)
 
     def cipher(self, message):
         """
@@ -18,7 +27,14 @@ class Affine():
         Parámetro:
             message -- el mensaje a cifrar.
         """
-        pass
+        cipher_message = ''
+        for letter in message:
+            if letter in self.alphabet:
+                pos = self.alphabet.find(letter)
+                cipher_message += self.alphabet[(pos+self.key)%len(self.alphabet)]
+            else:
+                cipher_message += letter
+        return cipher_message.replace(" ","") if flag is None else cipher_message
 
     def decipher(self, criptotext):
         """
