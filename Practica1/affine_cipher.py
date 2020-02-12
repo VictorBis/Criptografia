@@ -1,8 +1,6 @@
 import random
 import pytest
-from utils import CryptographyException
-from utils import prime_relative
-from utils import mod_inverse
+from utils import *
 
 class Affine():
 
