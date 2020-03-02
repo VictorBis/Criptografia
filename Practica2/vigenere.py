@@ -1,3 +1,6 @@
+import random
+from utils import random_string
+
 class Vigenere():
 
     def __init__(self, alphabet, password=None):
@@ -12,7 +15,7 @@ class Vigenere():
         """
         self.alphabet = alphabet
         if password is None:
-            self.password = 'PASS'
+            self.password = random_string(random.randint(4,100))
         else:
             self.password = password
 
