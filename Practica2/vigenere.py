@@ -1,4 +1,4 @@
-import random
+from random import randint
 from utils import random_string
 
 class Vigenere():
@@ -14,10 +14,7 @@ class Vigenere():
         :param password: El password que puede ser o no dada por el usuario.
         """
         self.alphabet = alphabet
-        if password is None:
-            self.password = random_string(random.randint(4,100))
-        else:
-            self.password = password
+        self.password = random_string(randint(4,100)) if password is None else password
 
     def cipher(self, message):
         """

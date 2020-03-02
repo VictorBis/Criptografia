@@ -1,3 +1,4 @@
+from utils import *
 class Hill():
 
     def __init__(self, alphabet, n, key=None):
@@ -10,6 +11,21 @@ class Hill():
         :param key: una cadena que corresponde a la llave, en caso de ser una llave inválida
         arrojar una CryptographyException.
         """
+        self.alphabet = alphabet
+        if not isqrt(n):
+            raise CryptographyException
+        else:
+            self.n = n
+        if key is not None:
+            if valid_det(generate_matrix(key,alphabet)):
+                self.key = key
+            else:
+                raise CryptographyException
+        else:
+            key = random_string(n)
+            while not valid_det(generate_matrix(key,alphabet)):
+                key = random_string(n)
+            self.key = key  
 
     def cipher(self, message):
         """
