@@ -10,6 +10,11 @@ class Vigenere():
         :param alphabet: Alfabeto a trabajar con el cifrado.
         :param password: El password que puede ser o no dada por el usuario.
         """
+        self.alphabet = alphabet
+        if password is None:
+            self.password = 'PASS'
+        else:
+            self.password = password
 
     def cipher(self, message):
         """
@@ -18,6 +23,17 @@ class Vigenere():
         :param message: El mensaje a cifrar.
         :return: Una cadena de texto con el mensaje cifrado.
         """
+        ciphered = ""
+        pos_pass = [] #positions of every char of the password in the alphabet
+        for letter in self.password:
+            pos_pass.append(self.alphabet.find(letter))
+        i = 0
+        for letter in message:
+            pos = (self.alphabet.find(letter) + pos_pass[i%len(self.password)]) % 27
+            ciphered += self.alphabet[pos]
+            i +=1
+        return ciphered
+
 
 
     def decipher(self, ciphered):
@@ -26,3 +42,13 @@ class Vigenere():
         :param ciphered: El criptotexto a decifrar.
         :return: El texto plano correspondiente del parámetro recibido.
         """
+        message = ""
+        pos_pass = [] #positions of every char of the password in the alphabet
+        for letter in self.password:
+            pos_pass.append(self.alphabet.find(letter))
+        i = 0
+        for letter in ciphered:
+            pos = (self.alphabet.find(letter) - pos_pass[i%len(self.password)] + 27) %27
+            message += self.alphabet[pos]
+            i +=1
+        return message
