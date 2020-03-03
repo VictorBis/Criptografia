@@ -1,5 +1,6 @@
 from random import randint
 from utils import random_string
+from utils import get_pos_array
 
 class Vigenere():
 
@@ -24,9 +25,7 @@ class Vigenere():
         :return: Una cadena de texto con el mensaje cifrado.
         """
         ciphered = ""
-        pos_pass = [] #positions of every char of the password in the alphabet
-        for letter in self.password:
-            pos_pass.append(self.alphabet.find(letter))
+        pos_pass = get_pos_array(self.password,self.alphabet)
         i = 0
         for letter in message:
             pos = (self.alphabet.find(letter) + pos_pass[i%len(self.password)]) % 27
@@ -43,9 +42,7 @@ class Vigenere():
         :return: El texto plano correspondiente del parámetro recibido.
         """
         message = ""
-        pos_pass = [] #positions of every char of the password in the alphabet
-        for letter in self.password:
-            pos_pass.append(self.alphabet.find(letter))
+        pos_pass = get_pos_array(self.password,self.alphabet)
         i = 0
         for letter in ciphered:
             pos = (self.alphabet.find(letter) - pos_pass[i%len(self.password)] + 27) %27

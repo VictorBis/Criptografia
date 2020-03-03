@@ -19,14 +19,26 @@ def isqrt(n):
     i = int(sqrt(n))
     return True if i**2 == n else False
 
-def generate_matrix(key,alphabet):
+def get_pos_array(key,alphabet):
     pos_pass = []
     for letter in key:
             pos_pass.append(alphabet.find(letter))
-    pos_pass = np.asarray(pos_pass)
+    return pos_pass
+
+def generate_matrix(key,alphabet):
+    pos_pass = np.asarray(get_pos_array(key,alphabet))
     a = pos_pass.reshape(int(sqrt(len(key))),int(sqrt(len(key))))
     return a
 
 def valid_det(matrix):
     return True if (np.linalg.det(matrix)) > 0 else False
+
+def dot_matrix(matrix,alphabet,s):
+    pos_pass = np.asarray(get_pos_array(key,alphabet))
+    enciphered_vector = matrix.dot(pos_pass)
+    res = ''
+    for i in enciphered_vector:
+        res += alphabet[int(i)]
+    return res    
+
     
