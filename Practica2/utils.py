@@ -90,24 +90,24 @@ def dot_matrix(matrix,alphabet,s):
         res += alphabet[int(i)]
     return res  
 
-def has_inv(A,mod):
+def has_inv(A,m):
     """
     Determines if a matrix has an inverse module m
     Params:
         A - Matrix
-        mod - module
+        m - module
     Return:
         True - The inverse exists
         False - The inverse doesn't exists
     """
     A = Matrix(A)
     try:
-        A.inv_mod(mod)
+        A.inv_mod(m)
     except:
         return False
     return True
 
-def mod_mat_inv(A,mod):
+def mod_mat_inv(A,m):
     """
     Calculates the module matrix inverse
     Params:
@@ -117,7 +117,10 @@ def mod_mat_inv(A,mod):
         The module matrix inverse of the given matrix
     """
     A = Matrix(A)
-    A = A.inv_mod(mod)
+    try:
+        A = A.inv_mod(m)
+    except:
+        print('No')
     return np.array(A).astype(np.int32)
 
 
