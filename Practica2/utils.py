@@ -71,7 +71,8 @@ def valid_det(matrix):
         True - The matrix has a valid determinant
         False - The matrix doesn't have a valid determinant
     """
-    return True if (np.linalg.det(matrix)) > 0 else False
+    det = np.linalg.det(matrix)%27
+    return True if det !=0 else False
 
 def dot_matrix(matrix,alphabet,s):
     """
