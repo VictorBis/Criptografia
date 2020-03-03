@@ -25,7 +25,7 @@ class Hill():
                 raise CryptographyException
         else:
             key = random_string(n)
-            while not valid_det(generate_matrix(key,alphabet)) and modInv(generate_matrix(key,alphabet),27) is not None:
+            while not valid_det(generate_matrix(key,alphabet)) and not has_inv(generate_matrix(key,alphabet),27):
                 key = random_string(n)
             self.key = key  
 
@@ -37,6 +37,7 @@ class Hill():
         :return: Un criptotexto correspondiente al mensaje, este debe de estar en representación de
         cadena, no lista.
         """
+        print(self.key)
         message = message.replace(" ","")
         cipher = ''
         seg = ''
@@ -59,6 +60,6 @@ class Hill():
         seg = ''
         for i in range(0,len(ciphered),int(sqrt(self.n))):
             seg += ciphered[i:i+int(sqrt(self.n))]
-            cipher += dot_matrix(modMatInv(generate_matrix(self.key,self.alphabet),27),self.alphabet,seg)
+            cipher += dot_matrix(mod_mat_inv(generate_matrix(self.key,self.alphabet),27),self.alphabet,seg)
             seg = ''
         return cipher
