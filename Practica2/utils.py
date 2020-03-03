@@ -117,10 +117,7 @@ def mod_mat_inv(A,m):
         The module matrix inverse of the given matrix
     """
     A = Matrix(A)
-    try:
-        A = A.inv_mod(m)
-    except:
-        print('No')
+    A = A.inv_mod(m)
     return np.array(A).astype(np.int32)
 
 
