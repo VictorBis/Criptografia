@@ -25,7 +25,7 @@ class Hill():
                 raise CryptographyException
         else:
             key = random_string(n)
-            while not valid_det(generate_matrix(key,alphabet)) and not has_inv(generate_matrix(key,alphabet),27):
+            while not valid_det(generate_matrix(key,alphabet)) and not has_inv(generate_matrix(key,alphabet),len(alphabet)):
                 key = random_string(n)
             self.key = key  
 
@@ -59,6 +59,6 @@ class Hill():
         seg = ''
         for i in range(0,len(ciphered),int(sqrt(self.n))):
             seg += ciphered[i:i+int(sqrt(self.n))]
-            cipher += dot_matrix(mod_mat_inv(generate_matrix(self.key,self.alphabet),27),self.alphabet,seg)
+            cipher += dot_matrix(mod_mat_inv(generate_matrix(self.key,self.alphabet),len(self.alphabet)),self.alphabet,seg)
             seg = ''
         return cipher
