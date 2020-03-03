@@ -37,7 +37,6 @@ class Hill():
         :return: Un criptotexto correspondiente al mensaje, este debe de estar en representación de
         cadena, no lista.
         """
-        print(self.key)
         message = message.replace(" ","")
         cipher = ''
         seg = ''
