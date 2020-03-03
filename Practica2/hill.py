@@ -1,4 +1,5 @@
 from utils import *
+from math import sqrt
 class Hill():
 
     def __init__(self, alphabet, n, key=None):
@@ -35,7 +36,16 @@ class Hill():
         :return: Un criptotexto correspondiente al mensaje, este debe de estar en representación de
         cadena, no lista.
         """
-
+        message = message.replace(" ","")
+        cipher = ''
+        seg = ''
+        for i in range(0,len(message),int(sqrt(self.n))):
+            seg += message[i:i+int(sqrt(self.n))]
+            if len(seg) != int(sqrt(self.n)):
+                seg += 'A'
+            cipher += dot_matrix(generate_matrix(self.key,self.alphabet),self.alphabet,seg)
+            seg = ''
+        return cipher
 
     def decipher(self, ciphered):
         """

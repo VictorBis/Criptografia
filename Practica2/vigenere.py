@@ -24,6 +24,7 @@ class Vigenere():
         :param message: El mensaje a cifrar.
         :return: Una cadena de texto con el mensaje cifrado.
         """
+        message = message.replace(" ","")
         ciphered = ""
         pos_pass = get_pos_array(self.password,self.alphabet)
         i = 0

@@ -34,11 +34,11 @@ def valid_det(matrix):
     return True if (np.linalg.det(matrix)) > 0 else False
 
 def dot_matrix(matrix,alphabet,s):
-    pos_pass = np.asarray(get_pos_array(key,alphabet))
-    enciphered_vector = matrix.dot(pos_pass)
+    pos_pass = np.asarray(get_pos_array(s,alphabet))
+    enciphered_vector = matrix.dot(pos_pass)%27
     res = ''
     for i in enciphered_vector:
         res += alphabet[int(i)]
-    return res    
+    return res  
 
     
