@@ -25,14 +25,14 @@ def test_known_key():
     criptotext = cipher.cipher("UN MENSAJE CON Ñ")
     assert True
     assert criptotext == "PBYSQPJJRWSBCA"
-    #assert cipher.decipher(criptotext) == "UNMENSAJECONÑA"
+    assert cipher.decipher(criptotext) == "UNMENSAJECONÑA"
     criptotext = cipher.cipher("UN MENSAJE DE LONGITUD PAR")
     assert criptotext == "PBYSQPJJSUAFSBFLTMBVRR"
-    #assert cipher.decipher("UNMENSAJEDELONGITUDPAR")
+    assert cipher.decipher("UNMENSAJEDELONGITUDPAR")
 
 def test_random_key():
     cipher = Hill(alphabet, 4)
     c1 = cipher.cipher("UN MENSAJE CON Ñ")
-    #assert cipher.decipher(c1) == "UNMENSAJECONÑA"
+    assert cipher.decipher(c1) == "UNMENSAJECONÑA"
     c2 = cipher.cipher("UN MENSAJE DE LONGITUD PAR")
-    #assert cipher.decipher(c2) == "UNMENSAJEDELONGITUDPAR"
+    assert cipher.decipher(c2) == "UNMENSAJEDELONGITUDPAR"

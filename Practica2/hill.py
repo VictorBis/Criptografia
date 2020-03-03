@@ -1,5 +1,6 @@
 from utils import *
 from math import sqrt
+import numpy as np
 class Hill():
 
     def __init__(self, alphabet, n, key=None):
@@ -24,7 +25,7 @@ class Hill():
                 raise CryptographyException
         else:
             key = random_string(n)
-            while not valid_det(generate_matrix(key,alphabet)):
+            while not valid_det(generate_matrix(key,alphabet)) and modInv(generate_matrix(key,alphabet),27) is not None:
                 key = random_string(n)
             self.key = key  
 
@@ -54,3 +55,10 @@ class Hill():
         :param ciphered: El criptotexto de algún mensaje posible.
         :return: El texto plano correspondiente a manera de cadena.
         """
+        cipher = ''
+        seg = ''
+        for i in range(0,len(ciphered),int(sqrt(self.n))):
+            seg += ciphered[i:i+int(sqrt(self.n))]
+            cipher += dot_matrix(modMatInv(generate_matrix(self.key,self.alphabet),27),self.alphabet,seg)
+            seg = ''
+        return cipher
