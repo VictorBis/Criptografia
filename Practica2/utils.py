@@ -62,51 +62,44 @@ def generate_matrix(key,alphabet):
     a = pos_pass.reshape(int(sqrt(len(key))),int(sqrt(len(key))))
     return a
 
-def valid_det(matrix):
+def get_det(A,m):
     """
-    Validates if a matrix has a valid determinant
+    Gets the determinant of a matrix % m
     Params:
-        matrix - matrix to be validated
+        A - matrix
     Return:
-        True - The matrix has a valid determinant
-        False - The matrix doesn't have a valid determinant
+        n - Determinant of a A % m
     """
-    det = np.linalg.det(matrix)%27
-    return True if det !=0 else False
+    return round(np.linalg.det(A)%m)
 
-def dot_matrix(matrix,alphabet,s):
+def mod_inverse(a, m):
+    """
+    Gets the modular multiplicative inverse of a number
+    Parámetro:
+        a -- Number which we can know the inverse
+        m -- mod
+    """
+    for x in range(1, m): 
+        if ((a * x) % m == 1): 
+            return x 
+    return False
+
+def dot_matrix(A,alphabet,s):
     """
     Generates the string of the product of a matrix and a string in the alphabet
     Params:
-        matrix - matrix to be multiplied
+        A - matrix to be multiplied
         alphabet - alphabet
         s - string to be multiplied
     Return:
         String of the result of the product between the matrix and the string
     """
     pos_pass = np.asarray(get_pos_array(s,alphabet))
-    enciphered_vector = matrix.dot(pos_pass)%27
+    enciphered_vector = A.dot(pos_pass)%27
     res = ''
     for i in enciphered_vector:
         res += alphabet[int(i)]
     return res  
-
-def has_inv(A,m):
-    """
-    Determines if a matrix has an inverse module m
-    Params:
-        A - Matrix
-        m - module
-    Return:
-        True - The inverse exists
-        False - The inverse doesn't exists
-    """
-    A = Matrix(A)
-    try:
-        A.inv_mod(m)
-    except:
-        return False
-    return True
 
 def mod_mat_inv(A,m):
     """

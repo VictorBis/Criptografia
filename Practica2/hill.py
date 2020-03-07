@@ -19,13 +19,14 @@ class Hill():
         else:
             self.n = n
         if key is not None:
-            if valid_det(generate_matrix(key,alphabet)):
+            if mod_inverse(get_det(generate_matrix(key,alphabet),len(alphabet)),len(alphabet)):
                 self.key = key
             else:
+                print(generate_matrix(key,alphabet))
                 raise CryptographyException
         else:
             key = random_string(n)
-            while not valid_det(generate_matrix(key,alphabet)) and not has_inv(generate_matrix(key,alphabet),len(alphabet)):
+            while not mod_inverse(get_det(generate_matrix(key,alphabet),len(alphabet)),len(alphabet)):
                 key = random_string(n)
             self.key = key  
 
