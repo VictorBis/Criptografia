@@ -5,8 +5,10 @@ alphabet = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'
 def decipher(ciphered,password):
         """
         Implementación del algoritmo de decifrado, según el criptosistema de vigenere.
-        :param ciphered: El criptotexto a decifrar.
-        :return: El texto plano correspondiente del parámetro recibido.
+        Param: 
+            ciphered: El criptotexto a decifrar.
+        Return: 
+            El texto plano correspondiente del parámetro recibido.
         """
         message = ""
         pos_pass = get_pos_array(password,alphabet)
