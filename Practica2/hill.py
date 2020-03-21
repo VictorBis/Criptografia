@@ -41,11 +41,12 @@ class Hill():
         message = message.replace(" ","")
         cipher = ''
         seg = ''
+        matrix = generate_matrix(self.key,self.alphabet)
         for i in range(0,len(message),int(sqrt(self.n))):
             seg += message[i:i+int(sqrt(self.n))]
             if len(seg) != int(sqrt(self.n)):
                 seg += 'A'
-            cipher += dot_matrix(generate_matrix(self.key,self.alphabet),self.alphabet,seg)
+            cipher += dot_matrix(matrix,self.alphabet,seg)
             seg = ''
         return cipher
 
@@ -58,8 +59,10 @@ class Hill():
         """
         cipher = ''
         seg = ''
+        matrix = generate_matrix(self.key,self.alphabet)
+        mat_inv = mod_mat_inv(matrix,len(self.alphabet)) 
         for i in range(0,len(ciphered),int(sqrt(self.n))):
             seg += ciphered[i:i+int(sqrt(self.n))]
-            cipher += dot_matrix(mod_mat_inv(generate_matrix(self.key,self.alphabet),len(self.alphabet)),self.alphabet,seg)
+            cipher += dot_matrix(mat_inv,self.alphabet,seg)
             seg = ''
         return cipher
