@@ -15,13 +15,13 @@ def test_very_large_number():
     assert len(first) == 100
     assert len(snd) >= 100 and len(snd) <= 150
     assert len(thd) >= 100 and len(thd) <= 150
-"""
+
 def test_miller_rabin():
     for p in primes:
         assert gen.miller_rabin(p)
     for np in not_primes:
         assert not(gen.miller_rabin(np))
-
+"""
 def test_wilson():
     for p in primes:
         assert gen.wilson(p)
