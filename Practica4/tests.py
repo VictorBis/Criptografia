@@ -21,10 +21,10 @@ def test_miller_rabin():
         assert gen.miller_rabin(p)
     for np in not_primes:
         assert not(gen.miller_rabin(np))
-"""
+
 def test_wilson():
     for p in primes:
         assert gen.wilson(p)
     for np in not_primes:
         assert not(gen.wilson(np))
-"""
+

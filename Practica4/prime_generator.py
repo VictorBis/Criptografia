@@ -20,23 +20,22 @@ def miller_rabin(n):
     """
     if n == 2 or n == 3:
         return True
-    k = 4
-
-    r, d = 0, n - 1
-    while d % 2 == 0:
+    k = 2
+    r, d = 0, n-1
+    while d%2 == 0: #Factorizar las potencias de 2 de n-2
         d //= 2
         r += 1
+        
     for _ in range(k):
-        a = randrange(2, n - 1)
+        a = randrange(2, n-1)
         x = pow(a, d, n)
-        if x == 1 or x == n - 1:
-            continue
-        for _ in range(r - 1):
-            x = pow(x, 2, n)
-            if x == n - 1:
-                break
-        else:
-            return False
+        if x != 1 and x != n-1:
+            for _ in range(r-1):
+                x = pow(x, 2, n)
+                if x == n-1:
+                    break
+            else:
+                return False
     return True
 
 
@@ -47,5 +46,4 @@ def wilson(n):
     :param n: El número a determinar su primalidad.
     :return: True si n es primo, False en otro caso.
     """
-    #return (factorial(n-1)+1)%n == 0
-    pass
+    return (fact(n-1)+1)%n == 0
