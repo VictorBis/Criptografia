@@ -46,4 +46,10 @@ def wilson(n):
     :param n: El número a determinar su primalidad.
     :return: True si n es primo, False en otro caso.
     """
-    return (fact(n-1)+1)%n == 0
+    def modFact(k,n):
+        p = 1
+        for i in range(1,k+1):
+            p = (p*i) % n
+        return p
+
+    return modFact(n-1,n)+1 == n
