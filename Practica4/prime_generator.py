@@ -1,5 +1,6 @@
 from random import randint
 from random import randrange
+from factorial import factorial as fac
 
 def big_int(size=None):
     """
@@ -46,10 +47,4 @@ def wilson(n):
     :param n: El número a determinar su primalidad.
     :return: True si n es primo, False en otro caso.
     """
-    def modFact(k,n):
-        p = 1
-        for i in range(1,k+1):
-            p = (p*i) % n
-        return p
-
-    return modFact(n-1,n)+1 == n
+    return fac(n-1)%n+1 == n
