@@ -18,6 +18,17 @@ class RSA():
         self.pub_key = choose_e(self.__phi__())
         self.priv_key = mod_inverse(self.pub_key, self.__phi__())
 
+        # Se esciben pub_key y priv_key
+        f_public = open('pub_key.pem', 'w')
+        f_public.write(str(self.n) + '\n')
+        f_public.write(str(self.pub_key) + '\n')
+        f_public.close()
+
+        f_private = open('priv_key.pem', 'w')
+        f_private.write(str(self.n) + '\n')
+        f_private.write(str(self.priv_key) + '\n')
+        f_private.close()
+
     def __phi__(self):
         """
         Función completamente privada y auxiliar, únicamente para el uso de las

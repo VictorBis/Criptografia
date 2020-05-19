@@ -46,7 +46,6 @@ def choose_e(phi):
     """
     e = randrange(2, phi)
     while (mcd(e, phi) != 1):
-        print(e)
         e = randrange(2, phi)
     return e
 
