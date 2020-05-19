@@ -1,4 +1,7 @@
 from prime_generator import generate_prime
+from utils import choose_e
+from sympy import mod_inverse
+
 
 class RSA():
 
@@ -8,8 +11,12 @@ class RSA():
         para que puedan ser vistos por toda la clase, así como la llave
         pública y privada.
         """
-        #Aquí también deben de generar su priv_key y pub_key
-        pass
+        # Aquí también deben de generar su priv_key y pub_key
+        self.p = generate_prime()
+        self.q = generate_prime()
+        self.n = self.p*self.q
+        self.pub_key = choose_e(self.__phi__())
+        self.priv_key = mod_inverse(self.pub_key, self.__phi__())
 
     def __phi__(self):
         """
@@ -17,6 +24,7 @@ class RSA():
         pruebas unitarias.
         :return: el número de primos relativos con n.
         """
+        return (self.p - 1) * (self.q - 1)
 
     def encrypt(self, message):
         """
@@ -35,3 +43,6 @@ class RSA():
         :return: una cadena con el mensaje original.
         """
         pass
+
+
+C = RSA()
