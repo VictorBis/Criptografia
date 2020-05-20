@@ -17,6 +17,7 @@ class RSA():
         self.n = self.p*self.q
         self.pub_key = choose_e(self.__phi__())
         self.priv_key = mod_inverse(self.pub_key, self.__phi__())
+        self.padding_scheme = False
 
         # Se esciben pub_key y priv_key
         f_public = open('pub_key.pem', 'w')
@@ -44,7 +45,10 @@ class RSA():
         :param message: el mensaje a encriptar.
         :return: una lista de enteros con el mensaje encriptado.
         """
-        pass
+        cipher = []
+        for m in message:
+            cipher.append(pow(ord(m), self.pub_key, self.n))
+        return cipher
 
     def decrypt(self, criptotext):
         """
@@ -53,7 +57,7 @@ class RSA():
         :param criptotext: el mensaje recibido que se va a desencriptar.
         :return: una cadena con el mensaje original.
         """
-        pass
-
-
-C = RSA()
+        message = ''
+        for i in criptotext:
+            message += chr(pow(i, self.priv_key, self.n))
+        return message
