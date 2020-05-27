@@ -1,4 +1,4 @@
-import EllipticCurves
+import EllipticCurves as ec
 from random import randint
 
 
@@ -14,8 +14,11 @@ class ECIES():
 
     def encrypt(self, message):
         k = randint(1, self.N - 1)
-        U = k * self.A
-        V = k * self.B
+        U = ec.scalar_multiplication(self.A, k, self.curve)
+        V = ec.scalar_multiplication(self.B, k, self.curve)
+        criptotext = []
+        criptotext.append(((U[0], U[1] % 2), ord(message[0])*V[0]))
+        return criptotext
 
     def decrypt(self, criptotext):
         pass
