@@ -70,4 +70,4 @@ def scalar_multiplication(p, k, curve):
     :return: una tupla representando a kP o None si al sumar ese punto cayó
     en algún momento al punto infinito.
     """
-    pass
+    return p if k == 1 else (add_points(p, scalar_multiplication(p, k-1, curve), curve))
