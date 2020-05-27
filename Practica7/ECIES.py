@@ -14,8 +14,8 @@ class ECIES():
 
     def encrypt(self, message):
         k = randint(1, self.N - 1)
-        R = k * self.A
-        Z = k * self.B
+        U = k * self.A
+        V = k * self.B
 
     def decrypt(self, criptotext):
         pass

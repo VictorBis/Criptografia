@@ -11,7 +11,6 @@ def test_class():
     assert c.determinant() == 275
 
 
-"""
 P, Q = (17, 10), (95, 31)
 
 
@@ -27,9 +26,9 @@ def test_add_curve():
 def test_scalar_mult():
     one_p = ec.scalar_multiplication(P, 1, c)
     assert c.is_on_curve(one_p)
-    k = 2
-    while one_p != None
-    ec.add_points(P, one_p)
-    k += 1
-    assert ec.scalar_multiplication(P, k, c) == None
-"""
+    k = 1
+    one_p = scalar_mult(P, 1, c)
+    while one_p != None:
+        k += 1
+        one_p = add_points(P, one_p, c)
+    assert scalar_mult(P, k, c) == None

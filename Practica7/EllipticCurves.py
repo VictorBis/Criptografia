@@ -1,3 +1,5 @@
+from sympy import mod_inverse
+
 
 class Curve():
 
@@ -15,7 +17,7 @@ class Curve():
 
     def is_on_curve(self, point):
         """
-        Método de clase regresa true si un punto está en la curva, éste punto 
+        Método de clase regresa true si un punto está en la curva, éste punto
         está representado a manera de tupla, como (x, y).
         :param point: Una tupla de enteros representando a un punto.
         :return: true si el punto está en la curva, false en otro caso.
@@ -37,7 +39,7 @@ class Curve():
 def add_points(p, q, curve):
     """
     Dados un par de puntos y una curva elíptica, calcula el punto de la suma
-    bajo la curva elíptica recibida como parámetro, se asume que p y q ya 
+    bajo la curva elíptica recibida como parámetro, se asume que p y q ya
     forman parte de la curva.
     :param p: una tupla representando un punto de la curva.
     :param q: una tupla representando un punto de la curva.
@@ -45,7 +47,17 @@ def add_points(p, q, curve):
     :return: Una tupla que contiene el resultado de la suma o None en caso de
     que haya sido evaluada al punto infinito.
     """
-    pass
+    if p[0] == q[0] and -p[1] % curve.p == q[1]:
+        return None
+    else:
+        lam = 0
+        if p == q:
+            lam = (3*pow(p[0], 2) + curve.A)*mod_inverse(2*p[1], curve.p)
+        else:
+            lam = (p[1] - q[1]) * mod_inverse(p[0] - q[0], curve.p)
+        x3 = pow(lam, 2) - p[0] - q[0]
+        y3 = lam*(p[0]-x3) - p[1]
+        return (x3, y3)
 
 
 def scalar_multiplication(p, k, curve):
@@ -53,9 +65,9 @@ def scalar_multiplication(p, k, curve):
     Dado un escalar del campo, k, calcula el punto kP bajo la definición
     de curvas elípticas.
     :param p: una tupla representando un punto de la curva.
-    :param k: el escalar a multiplicar por el punto. 
+    :param k: el escalar a multiplicar por el punto.
     :param curve: la curva sobre la cual se calculan las operaciones.
-    :return: una tupla representando a kP o None si al sumar ese punto cayó 
+    :return: una tupla representando a kP o None si al sumar ese punto cayó
     en algún momento al punto infinito.
     """
     pass
