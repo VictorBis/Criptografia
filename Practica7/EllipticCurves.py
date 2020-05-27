@@ -9,7 +9,9 @@ class Curve():
         :param B: segundo coeficiente de la curva.
         :param p: el tamaño del campo sobre el cual se hace la curva.
         """
-        pass
+        self.A = A
+        self.B = B
+        self.p = p
 
     def is_on_curve(self, point):
         """
@@ -18,7 +20,10 @@ class Curve():
         :param point: Una tupla de enteros representando a un punto.
         :return: true si el punto está en la curva, false en otro caso.
         """
-        pass
+        if point is None:
+            return True
+        else:
+            return pow(point[1], 2) % self.p == (pow(point[0], 3) + self.A*point[0] + self.B) % self.p
 
     def determinant(self):
         """
@@ -26,6 +31,8 @@ class Curve():
         es calculado de la forma 4A^3 + 27B^2.
         :return: El entero con el valor del determinante.
         """
+        return 4*pow(self.A, 3) + 27*pow(self.B, 2)
+
 
 def add_points(p, q, curve):
     """
@@ -39,6 +46,7 @@ def add_points(p, q, curve):
     que haya sido evaluada al punto infinito.
     """
     pass
+
 
 def scalar_multiplication(p, k, curve):
     """
